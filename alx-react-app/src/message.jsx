@@ -1,5 +1,5 @@
 import react from "react";
-function Message() {
+function WelcomeMessage() {
   return (
     <div>
       <h1>Hello eveyone, I am learning React at ALX!</h1>
@@ -7,4 +7,4 @@ function Message() {
     </div>
   );
 }
-export default Message;
+export default WelcomeMessage;

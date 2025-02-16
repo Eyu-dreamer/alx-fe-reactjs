@@ -1,6 +1,6 @@
 import React from "react";
-import Message from "./message";
+import WelcomeMessage from "./message";
 function App() {
-  return <Message />;
+  return <WelcomeMessage />;
 }
 export default App;
