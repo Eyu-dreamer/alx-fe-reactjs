@@ -1,4 +1,4 @@
-import React from "react";
+// Header.jsx
 function Header() {
   return (
     <header>
@@ -6,4 +6,5 @@ function Header() {
     </header>
   );
 }
+
 export default Header;

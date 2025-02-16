@@ -1,4 +1,4 @@
-import React from "react";
+// MainContent.jsx
 function MainContent() {
   return (
     <main>
@@ -6,4 +6,5 @@ function MainContent() {
     </main>
   );
 }
+
 export default MainContent;
