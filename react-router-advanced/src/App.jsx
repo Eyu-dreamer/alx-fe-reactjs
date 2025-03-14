@@ -1,61 +1,74 @@
 // src/App.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
 import BlogPost from "./components/BlogPost";
 import NotFound from "./components/NotFound";
-import PrivateRoute from "./components/PrivateRoute";
+import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
+import Login from "./components/Login"; // Import the Login component
 
 function App() {
+  // Simulate authentication state (can be from context or global state in a real app)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is authenticated on initial load
+    const storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    // Simulate a login action
+    setIsAuthenticated(true);
+    localStorage.setItem("isAuthenticated", "true"); // Save the login state
+  };
+
+  const handleLogout = () => {
+    // Simulate a logout action
+    setIsAuthenticated(false);
+    localStorage.removeItem("isAuthenticated"); // Remove login state
+  };
+
   return (
     <Router>
       <div>
-        <h1>Advanced Routing Example</h1>
+        <nav>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/profile">Profile</a>
+            </li>
+            <li>
+              <a href="/login">Login</a>
+            </li>
+          </ul>
+        </nav>
+
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route // src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Profile from './components/Profile';
-import BlogPost from './components/BlogPost'; // Make sure you import BlogPost here
-import NotFound from './components/NotFound';
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile/*" element={<Profile />} />
-        <Route path="/blog/:id" element={<BlogPost />} /> {/* Dynamic route for blog post */}
-        <Route path="*" element={<NotFound />} /> {/* Catch-all for 404 */}
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
- element={<BlogPost />} />
-
-          {/* Protected Route */}
+          {/* Use ProtectedRoute for the Profile route */}
           <Route
-            path="/profile"
+            path="/profile/*"
             element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
+              <ProtectedRoute
+                element={<Profile />}
+                isAuthenticated={isAuthenticated}
+              />
             }
-          >
-            {/* Nested Routes */}
-            <Route path="details" element={<ProfileDetails />} />
-            <Route path="settings" element={<ProfileSettings />} />
-          </Route>
+          />
 
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+
+        {isAuthenticated && <button onClick={handleLogout}>Logout</button>}
       </div>
     </Router>
   );
