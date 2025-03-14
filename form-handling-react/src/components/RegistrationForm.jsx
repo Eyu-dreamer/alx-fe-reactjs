@@ -1,81 +1,104 @@
-import React, { useState } from 'react';
+import React from "react";
+import { useFormik } from "formik";
 
 const RegistrationForm = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ username: '', email: '', password: '' });
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+    validate: (values) => {
+      const errors = {};
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission to perform validation
+      if (!values.username) {
+        errors.username = "Username is required";
+      }
 
-    setErrors({ username: '', email: '', password: '' }); // Reset errors before validation
+      if (!values.email) {
+        errors.email = "Email is required";
+      } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+        errors.email = "Email is invalid";
+      }
 
-    // Validation logic
-    let valid = true;
-    const newErrors = { username: '', email: '', password: '' };
+      if (!values.password) {
+        errors.password = "Password is required";
+      }
 
-    if (!username) {
-      newErrors.username = 'Username is required';
-      valid = false;
-    }
-
-    if (!email) {
-      newErrors.email = 'Email is required';
-      valid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email is invalid';
-      valid = false;
-    }
-
-    if (!password) {
-      newErrors.password = 'Password is required';
-      valid = false;
-    }
-
-    if (!valid) {
-      setErrors(newErrors); // Set error messages
-      return; // Stop form submission if validation fails
-    }
-
-    // If validation passes, manually submit the form
-    // Get a reference to the form element and submit it
-    e.target.submit(); // This will submit the form to the action URL specified in the form
-  };
+      return errors;
+    },
+    onSubmit: (values, { setSubmitting }) => {
+      // Manually submit the form to the action URL
+      fetch("https://your-api-endpoint.com/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          setSubmitting(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setSubmitting(false);
+        });
+    },
+  });
 
   return (
-    <form action="https://your-api-endpoint.com/register" method="POST" onSubmit={handleSubmit}>
+    <form
+      action="https://your-api-endpoint.com/register"
+      method="POST"
+      onSubmit={formik.handleSubmit}
+    >
       <div>
         <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="username"
+          value={formik.values.username}
+          onChange={formik.handleChange}
         />
-        {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
+        {formik.errors.username && (
+          <p style={{ color: "red" }}>{formik.errors.username}</p>
+        )}
       </div>
+
       <div>
         <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
         />
-        {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+        {formik.errors.email && (
+          <p style={{ color: "red" }}>{formik.errors.email}</p>
+        )}
       </div>
+
       <div>
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
         />
-        {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
+        {formik.errors.password && (
+          <p style={{ color: "red" }}>{formik.errors.password}</p>
+        )}
       </div>
-      <button type="submit">Register</button>
+
+      <button type="submit" disabled={formik.isSubmitting}>
+        Register
+      </button>
     </form>
   );
 };
