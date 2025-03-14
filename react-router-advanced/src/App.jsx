@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import ProfileDetails from "./components/ProfileDetails";
 import ProfileSettings from "./components/ProfileSettings";
-import Post from "./components/Post";
+import BlogPost from "./components/BlogPost";
 import NotFound from "./components/NotFound";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -16,7 +16,7 @@ function App() {
         <h1>Advanced Routing Example</h1>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/post/:postId" element={<Post />} />
+          <Route path="/post/:postId" element={<BlogPost />} />
 
           {/* Protected Route */}
           <Route
