@@ -1,12 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Profile from './components/Profile';
-import ProfileDetails from './components/ProfileDetails';
-import ProfileSettings from './components/ProfileSettings';
-import Post from './components/Post';
-import NotFound from './components/NotFound';
-import PrivateRoute from './components/PrivateRoute';
+// src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import ProfileDetails from "./components/ProfileDetails";
+import ProfileSettings from "./components/ProfileSettings";
+import Post from "./components/Post";
+import NotFound from "./components/NotFound";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -16,14 +17,21 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/post/:postId" element={<Post />} />
-          
+
           {/* Protected Route */}
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}>
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          >
             {/* Nested Routes */}
             <Route path="details" element={<ProfileDetails />} />
             <Route path="settings" element={<ProfileSettings />} />
           </Route>
-          
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
