@@ -5,15 +5,13 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BlogPost from "./components/BlogPost";
 import NotFound from "./components/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
-import Login from "./components/Login"; // Import the Login component
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./components/Login";
 
 function App() {
-  // Simulate authentication state (can be from context or global state in a real app)
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if the user is authenticated on initial load
     const storedAuth = localStorage.getItem("isAuthenticated");
     if (storedAuth === "true") {
       setIsAuthenticated(true);
@@ -21,15 +19,13 @@ function App() {
   }, []);
 
   const handleLogin = () => {
-    // Simulate a login action
     setIsAuthenticated(true);
-    localStorage.setItem("isAuthenticated", "true"); // Save the login state
+    localStorage.setItem("isAuthenticated", "true");
   };
 
   const handleLogout = () => {
-    // Simulate a logout action
     setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated"); // Remove login state
+    localStorage.removeItem("isAuthenticated");
   };
 
   return (
@@ -51,18 +47,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-
-          {/* Use ProtectedRoute for the Profile route */}
           <Route
             path="/profile/*"
-            element={
-              <ProtectedRoute
-                element={<Profile />}
-                isAuthenticated={isAuthenticated}
-              />
-            }
+            element={<ProtectedRoute element={<Profile />} />}
           />
-
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="*" element={<NotFound />} />

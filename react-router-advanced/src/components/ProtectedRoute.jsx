@@ -2,14 +2,21 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-// A simple ProtectedRoute component that will check if a user is authenticated
+// Custom hook for checking authentication status
+function useAuth() {
+  // Simulating an auth check (In real apps, it could come from context or global state)
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  return isAuthenticated;
+}
+
 function ProtectedRoute({ element, isAuthenticated }) {
-  if (!isAuthenticated) {
-    // Redirect the user to the login page (or any other page you wish)
-    return <Navigate to="/login" replace />;
+  const isUserAuthenticated = useAuth();
+
+  if (!isUserAuthenticated) {
+    // If not authenticated, redirect to login
+    return <Navigate to="/login" />;
   }
 
-  // If authenticated, render the requested element (e.g., Profile component)
   return element;
 }
 
