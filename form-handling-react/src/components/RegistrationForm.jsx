@@ -6,9 +6,35 @@ function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ username: '', email: '', password: '' });
   // then validate values before we do submition.
+  const newError = { username: '', email: '', password: '' };
+  function handleSubmit(e) {
+e.preventDefault(); // to stop form submition.
+let valid =  true;
+if(!username) {
+  newError.username = "Invalid username";
+  setErrors(newError)
+  valid= false;
+}
+if(!email) {
+  newError.email= "Invalid email";
+  setErrors(newError)
+  valid= false;
+}
+if(!password) {
+  newError.password = "Invalid password";
+  setErrors(newError)
+  valid= false;
+}
+if(!valid) {
+  setErrors(newError);
+  return;
+}
+e.target.submit();
+  }
   return (
-    <form style={formStyles}>
+    <form style={formStyles} onSubmit={}>
       <fieldset style={fieldsetStyles}>
         <legend>Form</legend>
 
