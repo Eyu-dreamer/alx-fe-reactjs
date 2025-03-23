@@ -1,5 +1,6 @@
 import React from "react";
+import Home from "./components/HomePage";
 function App() {
-  return <h1>Hello</h1>;
+  return <Home></Home>;
 }
 export default App;
