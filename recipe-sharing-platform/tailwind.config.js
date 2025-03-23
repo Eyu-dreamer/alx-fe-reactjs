@@ -1,23 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-<<<<<<< HEAD
-    content: [
-        "./public/index.html", // Ensure the path to index.html is correct
-        "./src/**/*.{js,jsx,ts,tsx}", // Match all JavaScript, JSX, TypeScript, and TSX files
-    ],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
-};
-=======
+  // The content section specifies the paths to all the files that should be scanned for Tailwind classes.
   content: [
-    "./public/index.html",  // Ensure the path to index.html is correct
-    "./src/**/*.{js,jsx,ts,tsx}",  // Match all JavaScript, JSX, TypeScript, and TSX files
+    // Path to your HTML file
+    "./public/index.html", 
+    
+    // Path to your source files (JS, JSX, TS, TSX, etc.)
+    "./src/**/*.{js,jsx,ts,tsx}", 
   ],
+
   theme: {
-    extend: {},
+    extend: {
+      // You can extend Tailwind's default theme here, such as adding custom colors, fonts, or spacing.
+    },
   },
-  plugins: [],
-}
->>>>>>> 7c65e6043863d8d7ed057dffa7d6b710c4bcd5ad
+
+  plugins: [
+    // You can add any Tailwind plugins here. For now, it's an empty array.
+  ],
+};
