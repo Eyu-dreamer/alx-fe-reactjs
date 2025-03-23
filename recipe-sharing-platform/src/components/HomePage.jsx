@@ -12,7 +12,7 @@ function Home() {
     return (
       <div
         key={recipe.id}
-        className="flex flex-col justify-around items-center bg-white p-4 m-4 gap-4 border-2 border-black"
+        className="flex flex-col justify-around items-center bg-white p-4 m-4 gap-4 border-2 border-black hover:shadow-2xl rounded"
       >
         <img
           src={recipe.image}
