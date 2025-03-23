@@ -1,13 +1,61 @@
-[{
-        "id": 1,
-        "title": "Spaghetti Carbonara",
-        "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-        "image": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 2,
-        "title": "Chicken Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-    }
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper. It’s rich, creamy, and incredibly satisfying.",
+    "image": "https://www.seriouseats.com/thmb/f8kaNAvq2lf6M1mzytVhDTsoJMI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20150513-spaghetti-carbonara-10-1-0d348e79c7f242fa95f49fddab9f1e87.jpg",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta or bacon, diced",
+      "2 large eggs",
+      "50g Parmesan cheese, grated",
+      "50g Pecorino cheese, grated",
+      "Freshly ground black pepper",
+      "Salt to taste"
+    ],
+    "instructions": [
+      "1. Cook the spaghetti according to package instructions in salted water until al dente.",
+      "2. In a large pan, cook the pancetta or bacon over medium heat until crispy, about 5-7 minutes.",
+      "3. In a bowl, whisk together eggs, Parmesan, Pecorino, and a generous amount of black pepper.",
+      "4. Once the pasta is cooked, reserve 1/2 cup of pasta water and then drain.",
+      "5. Add the hot pasta to the pan with pancetta and toss to combine.",
+      "6. Quickly pour the egg and cheese mixture over the pasta, tossing vigorously to coat the pasta in the creamy sauce. If it’s too thick, add reserved pasta water a little at a time to reach desired consistency.",
+      "7. Serve immediately with extra Parmesan and black pepper on top."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy. A perfect balance of spices and richness.",
+    "image": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2020/07/chicken-tikka-masala.jpg?itok=9wV2rTvh",
+    "ingredients": [
+      "500g chicken breast, cubed",
+      "1 tbsp vegetable oil",
+      "1 onion, finely chopped",
+      "2 cloves garlic, minced",
+      "1 inch ginger, grated",
+      "1 tbsp garam masala",
+      "1 tbsp ground cumin",
+      "1 tbsp ground coriander",
+      "1/2 tsp turmeric powder",
+      "1/2 tsp chili powder",
+      "400g can of chopped tomatoes",
+      "200ml heavy cream",
+      "1 tbsp tomato paste",
+      "1 tsp sugar",
+      "Salt to taste",
+      "Fresh cilantro for garnish",
+      "Rice or naan for serving"
+    ],
+    "instructions": [
+      "1. In a large bowl, marinate the chicken with a pinch of salt, half of the garam masala, and 1 tbsp of oil. Let it sit for at least 30 minutes.",
+      "2. Heat oil in a large pan or skillet over medium heat. Add the onion and sauté for 5 minutes, until softened.",
+      "3. Add garlic and ginger, and cook for another minute until fragrant.",
+      "4. Stir in the remaining spices: garam masala, cumin, coriander, turmeric, and chili powder. Cook for 2 minutes, stirring frequently.",
+      "5. Add the chopped tomatoes, tomato paste, and sugar. Simmer for 10 minutes, stirring occasionally.",
+      "6. While the sauce simmers, grill or cook the marinated chicken pieces in a separate pan until golden brown and cooked through.",
+      "7. Once the sauce is thickened, add the grilled chicken to the pan and stir in the cream. Simmer for an additional 5 minutes.",
+      "8. Garnish with chopped cilantro and serve hot with rice or naan."
+    ]
+  }
 ]
