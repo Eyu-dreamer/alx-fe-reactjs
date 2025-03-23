@@ -1,4 +1,4 @@
-import Home from "./components/Home";
+import React from "react";
 export default function App() {
-  return <Home></Home>;
+  return <div className="text-blue-500">App</div>;
 }
