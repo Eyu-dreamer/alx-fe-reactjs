@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function AddRecipeForm({ closeModal }) {
-  const [recipeName, setRecipeName] = useState("");
+  const [title, setTitle] = useState(""); // Change recipeName to title
   const [image, setImage] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -11,12 +11,12 @@ function AddRecipeForm({ closeModal }) {
     e.preventDefault();
 
     // Validate if fields are filled
-    if (!recipeName || !image || !ingredients || !instructions || !summary) {
+    if (!title || !image || !ingredients || !instructions || !summary) {
       alert("Please fill in all the fields!");
       return;
     }
 
-    const newRecipe = { recipeName, image, ingredients, instructions, summary };
+    const newRecipe = { title, image, ingredients, instructions, summary }; // Use title instead of recipeName
 
     // Retrieve existing recipes from localStorage
     const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
@@ -28,7 +28,7 @@ function AddRecipeForm({ closeModal }) {
     localStorage.setItem("recipes", JSON.stringify(savedRecipes));
 
     // Clear the form after submitting
-    setRecipeName("");
+    setTitle(""); // Clear the title field
     setImage("");
     setIngredients("");
     setInstructions("");
@@ -41,15 +41,17 @@ function AddRecipeForm({ closeModal }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
       <div>
-        <label htmlFor="recipeName" className="block text-lg">
+        <label htmlFor="title" className="block text-lg">
+          {" "}
+          {/* Change recipeName to title */}
           Title
         </label>
         <input
           type="text"
-          id="recipeName"
-          name="recipeName"
-          value={recipeName}
-          onChange={(e) => setRecipeName(e.target.value)}
+          id="title" // Update the id to title
+          name="title" // Update the name to title
+          value={title} // Use the title state
+          onChange={(e) => setTitle(e.target.value)} // Update the setter to setTitle
           className="w-full p-2 border rounded-md"
         />
       </div>
