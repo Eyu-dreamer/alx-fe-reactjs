@@ -6,22 +6,30 @@ function AddRecipeForm({ closeModal }) {
   const [ingredients, setIngredients] = useState(""); // Ingredients
   const [instructions, setInstructions] = useState(""); // Instructions
   const [summary, setSummary] = useState(""); // Recipe summary
-  const [steps, setSteps] = useState(""); // New "steps" field for preparation steps
+  const [steps, setSteps] = useState(""); // Preparation steps
+  const [errors, setErrors] = useState({}); // Validation errors
+
+  const validateForm = () => {
+    let formErrors = {};
+
+    // Check if fields are empty and add errors
+    if (!title) formErrors.title = "Title is required.";
+    if (!image) formErrors.image = "Image URL is required.";
+    if (!ingredients) formErrors.ingredients = "Ingredients are required.";
+    if (!instructions) formErrors.instructions = "Instructions are required.";
+    if (!summary) formErrors.summary = "Summary is required.";
+    if (!steps) formErrors.steps = "Preparation steps are required.";
+
+    setErrors(formErrors); // Set the errors state
+    return Object.keys(formErrors).length === 0; // If no errors, return true
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate if fields are filled
-    if (
-      !title ||
-      !image ||
-      !ingredients ||
-      !instructions ||
-      !summary ||
-      !steps
-    ) {
-      alert("Please fill in all the fields!");
-      return;
+    // Validate the form fields
+    if (!validateForm()) {
+      return; // If form has errors, do not submit
     }
 
     const newRecipe = {
@@ -49,6 +57,7 @@ function AddRecipeForm({ closeModal }) {
     setInstructions("");
     setSummary("");
     setSteps(""); // Clear steps
+    setErrors({}); // Clear errors
 
     alert("Recipe added successfully!");
     closeModal(); // Close the modal after submitting
@@ -56,6 +65,7 @@ function AddRecipeForm({ closeModal }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
+      {/* Title */}
       <div>
         <label htmlFor="title" className="block text-lg">
           Title
@@ -68,8 +78,10 @@ function AddRecipeForm({ closeModal }) {
           onChange={(e) => setTitle(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
+        {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
       </div>
 
+      {/* Image URL */}
       <div>
         <label htmlFor="image" className="block text-lg">
           Image URL
@@ -82,8 +94,10 @@ function AddRecipeForm({ closeModal }) {
           onChange={(e) => setImage(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
+        {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
       </div>
 
+      {/* Summary */}
       <div>
         <label htmlFor="summary" className="block text-lg">
           Summary
@@ -95,8 +109,12 @@ function AddRecipeForm({ closeModal }) {
           onChange={(e) => setSummary(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
+        {errors.summary && (
+          <p className="text-red-500 text-sm">{errors.summary}</p>
+        )}
       </div>
 
+      {/* Ingredients */}
       <div>
         <label htmlFor="ingredients" className="block text-lg">
           Ingredients
@@ -108,8 +126,12 @@ function AddRecipeForm({ closeModal }) {
           onChange={(e) => setIngredients(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
+        {errors.ingredients && (
+          <p className="text-red-500 text-sm">{errors.ingredients}</p>
+        )}
       </div>
 
+      {/* Instructions */}
       <div>
         <label htmlFor="instructions" className="block text-lg">
           Instructions
@@ -121,9 +143,12 @@ function AddRecipeForm({ closeModal }) {
           onChange={(e) => setInstructions(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
+        {errors.instructions && (
+          <p className="text-red-500 text-sm">{errors.instructions}</p>
+        )}
       </div>
 
-      {/* New Steps Field */}
+      {/* Steps */}
       <div>
         <label htmlFor="steps" className="block text-lg">
           Preparation Steps
@@ -132,9 +157,10 @@ function AddRecipeForm({ closeModal }) {
           id="steps"
           name="steps"
           value={steps}
-          onChange={(e) => setSteps(e.target.value)} // Update state for steps
+          onChange={(e) => setSteps(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
+        {errors.steps && <p className="text-red-500 text-sm">{errors.steps}</p>}
       </div>
 
       <button
