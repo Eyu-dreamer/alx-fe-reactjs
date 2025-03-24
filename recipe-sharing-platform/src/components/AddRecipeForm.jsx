@@ -64,10 +64,13 @@ function AddRecipeForm({ closeModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 max-w-lg mx-auto p-6 bg-white rounded-lg shadow-xl font-sans"
+    >
       {/* Title */}
       <div>
-        <label htmlFor="title" className="block text-lg">
+        <label htmlFor="title" className="block text-lg font-semibold">
           Title
         </label>
         <input
@@ -76,14 +79,14 @@ function AddRecipeForm({ closeModal }) {
           name="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
       </div>
 
       {/* Image URL */}
       <div>
-        <label htmlFor="image" className="block text-lg">
+        <label htmlFor="image" className="block text-lg font-semibold">
           Image URL
         </label>
         <input
@@ -92,14 +95,14 @@ function AddRecipeForm({ closeModal }) {
           name="image"
           value={image}
           onChange={(e) => setImage(e.target.value)}
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
       </div>
 
       {/* Summary */}
       <div>
-        <label htmlFor="summary" className="block text-lg">
+        <label htmlFor="summary" className="block text-lg font-semibold">
           Summary
         </label>
         <textarea
@@ -107,7 +110,7 @@ function AddRecipeForm({ closeModal }) {
           name="summary"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.summary && (
           <p className="text-red-500 text-sm">{errors.summary}</p>
@@ -116,7 +119,7 @@ function AddRecipeForm({ closeModal }) {
 
       {/* Ingredients */}
       <div>
-        <label htmlFor="ingredients" className="block text-lg">
+        <label htmlFor="ingredients" className="block text-lg font-semibold">
           Ingredients
         </label>
         <textarea
@@ -124,7 +127,7 @@ function AddRecipeForm({ closeModal }) {
           name="ingredients"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.ingredients && (
           <p className="text-red-500 text-sm">{errors.ingredients}</p>
@@ -133,7 +136,7 @@ function AddRecipeForm({ closeModal }) {
 
       {/* Instructions */}
       <div>
-        <label htmlFor="instructions" className="block text-lg">
+        <label htmlFor="instructions" className="block text-lg font-semibold">
           Instructions
         </label>
         <textarea
@@ -141,7 +144,7 @@ function AddRecipeForm({ closeModal }) {
           name="instructions"
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.instructions && (
           <p className="text-red-500 text-sm">{errors.instructions}</p>
@@ -150,7 +153,7 @@ function AddRecipeForm({ closeModal }) {
 
       {/* Steps */}
       <div>
-        <label htmlFor="steps" className="block text-lg">
+        <label htmlFor="steps" className="block text-lg font-semibold">
           Preparation Steps
         </label>
         <textarea
@@ -158,14 +161,14 @@ function AddRecipeForm({ closeModal }) {
           name="steps"
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         {errors.steps && <p className="text-red-500 text-sm">{errors.steps}</p>}
       </div>
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+        className="w-full bg-blue-500 text-white py-2 rounded-md shadow-md hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         Add Recipe
       </button>
