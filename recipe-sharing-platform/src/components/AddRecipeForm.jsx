@@ -1,22 +1,37 @@
 import React, { useState } from "react";
 
 function AddRecipeForm({ closeModal }) {
-  const [title, setTitle] = useState(""); // Change recipeName to title
-  const [image, setImage] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
-  const [summary, setSummary] = useState("");
+  const [title, setTitle] = useState(""); // Recipe title
+  const [image, setImage] = useState(""); // Recipe image URL
+  const [ingredients, setIngredients] = useState(""); // Ingredients
+  const [instructions, setInstructions] = useState(""); // Instructions
+  const [summary, setSummary] = useState(""); // Recipe summary
+  const [steps, setSteps] = useState(""); // New "steps" field for preparation steps
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Validate if fields are filled
-    if (!title || !image || !ingredients || !instructions || !summary) {
+    if (
+      !title ||
+      !image ||
+      !ingredients ||
+      !instructions ||
+      !summary ||
+      !steps
+    ) {
       alert("Please fill in all the fields!");
       return;
     }
 
-    const newRecipe = { title, image, ingredients, instructions, summary }; // Use title instead of recipeName
+    const newRecipe = {
+      title,
+      image,
+      ingredients,
+      instructions,
+      summary,
+      steps,
+    };
 
     // Retrieve existing recipes from localStorage
     const savedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
@@ -28,11 +43,12 @@ function AddRecipeForm({ closeModal }) {
     localStorage.setItem("recipes", JSON.stringify(savedRecipes));
 
     // Clear the form after submitting
-    setTitle(""); // Clear the title field
+    setTitle("");
     setImage("");
     setIngredients("");
     setInstructions("");
     setSummary("");
+    setSteps(""); // Clear steps
 
     alert("Recipe added successfully!");
     closeModal(); // Close the modal after submitting
@@ -42,16 +58,14 @@ function AddRecipeForm({ closeModal }) {
     <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
       <div>
         <label htmlFor="title" className="block text-lg">
-          {" "}
-          {/* Change recipeName to title */}
           Title
         </label>
         <input
           type="text"
-          id="title" // Update the id to title
-          name="title" // Update the name to title
-          value={title} // Use the title state
-          onChange={(e) => setTitle(e.target.value)} // Update the setter to setTitle
+          id="title"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="w-full p-2 border rounded-md"
         />
       </div>
@@ -105,6 +119,20 @@ function AddRecipeForm({ closeModal }) {
           name="instructions"
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
+          className="w-full p-2 border rounded-md"
+        />
+      </div>
+
+      {/* New Steps Field */}
+      <div>
+        <label htmlFor="steps" className="block text-lg">
+          Preparation Steps
+        </label>
+        <textarea
+          id="steps"
+          name="steps"
+          value={steps}
+          onChange={(e) => setSteps(e.target.value)} // Update state for steps
           className="w-full p-2 border rounded-md"
         />
       </div>
